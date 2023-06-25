@@ -1,0 +1,27 @@
+# Example using the scikit-learn library and Naive Bayes classifier
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
+
+# Load the 20 Newsgroups dataset
+categories = ['alt.atheism', 'soc.religion.christian', 'comp.graphics', 'sci.med']
+data = fetch_20newsgroups(subset='train', categories=categories)
+
+# Convert text to numerical features using CountVectorizer
+vectorizer = CountVectorizer()
+X_train = vectorizer.fit_transform(data.data)
+
+# Train a Naive Bayes classifier
+classifier = MultinomialNB()
+classifier.fit(X_train, data.target)
+
+# Make predictions on test data
+X_test = vectorizer.transform(test_data.data)
+predictions = classifier.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(test_data.target, predictions)
+
+# Print the accuracy
+print("Accuracy:", accuracy)
